@@ -1,0 +1,38 @@
+<mat-card>
+    <!-- <div class="box green" style="display:inline-block"></div><p style="margin-top: 1mm;">Active</p>
+    <div class="box green">Active</div> -->
+<mat-list  [style.overflow]="'auto'" [style.height.px]="'500'" style="min-height:auto;">
+<mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes" [ngStyle]="{'background-color': q.active? 'lightgreen' : 'lightred'}">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{q.title}}</mat-card-title>
+        <mat-card-subtitle >{{q.category.title}}</mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{q.description}}</p>
+    </mat-card-content>
+        <button [routerLink]="'/admin/view-questions/'+q.qId+'/'+q.title" mat-flat-button color="accent">
+            Questions
+        </button>
+        <button class="ml10" mat-stroked-button>
+            Max Marks {{q.maxMarks}}
+        </button>
+        <button class="ml10" mat-stroked-button>
+            Questions {{q.numberofQues}}
+        </button>
+        <button [routerLink]="'/admin/updateQuiz/'+q.qId" class="ml10" mat-flat-button color="accent">
+           Update
+        </button>
+        <button class="ml10" mat-flat-button color="accent">
+            Attempts
+         </button>
+         <button mat-raised-button color="warn" style="border: 0px;border-radius: 75px;" (click)="deleteQuiz(q)">
+            <mat-icon mat-list-icon>delete</mat-icon>
+        </button> 
+</mat-card>
+</mat-list>
+<div class="container text-center mt20">
+    <button mat-raised-button routerLink="/admin/quiz" color="success">Add New Quiz</button>
+</div>
+</mat-card>

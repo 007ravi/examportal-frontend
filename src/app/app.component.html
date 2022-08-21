@@ -1,0 +1,31 @@
+<!-- https://tdev.app/ngx-ui-loader -->
+
+<ngx-ui-loader fgsColor="rgb(235, 135, 152)"   
+ pbColor="rgb(235, 135, 152)"  
+ text="Loading..."
+ textColor="rgb(235, 135, 152)" 
+
+ ></ngx-ui-loader>
+
+
+<!-- for blur purpose -->
+<div ngxUiLoaderBlurred [blur]="blurValue">
+  <!-- This page content will be blurred/frosted when foreground loader is showed -->
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+</div>
+<!-- <div class="bootstrap-wrapper">
+<div class="container">
+<h1>hello</h1>
+<button mat-button> click</button>
+<div class="row">
+  <div class="col-md-6">
+   <h1> left</h1>
+   <button mat-raised-button color="accent">hello</button>
+  </div>
+  <div class="col-md-6">
+  <h1>right</h1>
+  </div>
+</div>
+</div>
+</div> -->

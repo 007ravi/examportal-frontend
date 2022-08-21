@@ -1,0 +1,15 @@
+.example-header-image {
+    background-image: url('src\assets\quiz.png');
+    background-size: cover;
+  }
+
+  .box {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+  }
+
+  .green {
+    background-color:  lightgreen;
+  }

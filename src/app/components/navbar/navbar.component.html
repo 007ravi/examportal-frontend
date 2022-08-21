@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <a *ngIf="userRole=='Admin'" routerLink="/">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
+     <mat-icon>menu_book</mat-icon>
+   </button>
+</a>  
+<a *ngIf="userRole=='NORMAL'" routerLink="/">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" >
+ <mat-icon>menu_book</mat-icon>
+</button>
+</a>  
+   <span>Examportal</span>
+   <span class="example-spacer"></span>
+   <span (click)="navigateLogin()" *ngIf="!this.loginService.isLogIn()">Login</span>
+   <button 
+   *ngIf="!this.loginService.isLogIn()"
+   mat-icon-button class="example-icon favorite-icon" 
+   aria-label="Example icon-button with heart icon"
+   class="mr20"
+   (click)="navigateLogin()"
+   >
+     <mat-icon>login</mat-icon>
+   </button>
+   <span (click)="navigateRegister()" *ngIf="!this.loginService.isLogIn()"> Register</span>
+   <button
+   *ngIf="!this.loginService.isLogIn()"
+    mat-icon-button class="example-icon" 
+    aria-label="Example icon-button with share icon"
+    (click)="navigateRegister()"
+    >
+    <mat-icon>app_registration</mat-icon>
+  </button>
+
+  <a *ngIf="this.loginService.isLogIn() && user!=null"
+  mat-icon-button
+  class="example-icon favorite-icon mr20 ml20"
+  routerLink='/admin/profile'
+  >
+  
+   {{username}}
+</a> 
+
+  <a *ngIf="this.loginService.isLogIn()"
+  (click)="loginService.logOut()"
+  [routerLink]="'/signup'"
+  mat-icon-button
+  class="example-icon favorite-icon mr20 ml20"
+  >
+   Logout
+</a>  
+ </mat-toolbar>
