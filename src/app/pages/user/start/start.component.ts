@@ -3,6 +3,8 @@ import { LocationStrategy } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
+import { ResultService } from 'src/app/services/result.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-start',
@@ -21,7 +23,9 @@ export class StartComponent implements OnInit {
   timer:number=100;
   constructor(private  locationst:LocationStrategy,
     private _route:ActivatedRoute,
-    private _questionService:QuestionService
+    private _questionService:QuestionService,
+    private _resultService:ResultService,
+    private _loginService:LoginService
     ) { }
 
   ngOnInit(): void {
@@ -85,10 +89,13 @@ this.marksGot=data.marksGot;
 this.attempted=data.attempted;
 this.correctAnswers=data.correctAnswers;
 this.isSubmit=true;
+this.addResultInDb();
 },
 (err)=>{
 console.log(err);
 })
+
+
      
   //   this.attempted=0;
   //   this.isSubmit=true;
@@ -108,7 +115,7 @@ console.log(err);
 
   startTimer(){
   let t=  window.setInterval(()=>{
-      if(this.timer<=0){
+      if(this.timer<=0 && this.isSubmit==false){
         this.submitQuiz();
         clearInterval(t);
       }
@@ -138,5 +145,23 @@ console.log(err);
 
   printPage(){
     window.print();
+  }
+
+  addResultInDb(){
+    let result:any={user:{},quiz:{}};
+    let user:any=this._loginService.getUser();
+    console.log(user.id);
+    result.attemptedDate=new Date();
+    result.marks=this.marksGot;
+    result.questionsAttempted=this.attempted;
+    result.correctAnswer=this.correctAnswers;
+    result.user.id=user.id;
+    result.quiz.qId=this.quizId;
+    this._resultService.addResultByUserAndQuiz(result).subscribe((data:any)=>{
+
+    },
+    (err:any)=>{
+
+    })
   }
 }
