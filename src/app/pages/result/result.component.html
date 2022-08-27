@@ -1,0 +1,29 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+    <mat-card>
+        <mat-card-content>
+            <table class="table table-striped" style="width: 100%;">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Marks Scored</th>
+            <th scope="col">Attempted Questions</th>
+            <th scope="col">Attempted Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of results">
+              <th scope="row">1</th>
+              <td class="text-center">{{r.user.username}}</td>
+              <td>{{r.marks}}</td>
+              <td>{{r.questionsAttempted}}</td>
+              <td>{{r.attemptedDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card-content>
+
+</mat-card>
+</div>
+</div>
