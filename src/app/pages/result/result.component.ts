@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ResultService } from 'src/app/services/result.service';
 import { LoginService } from 'src/app/services/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-result',
@@ -12,16 +13,27 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ResultComponent implements OnInit {
 results:any;
-constructor(private _resultService:ResultService,private _loginService:LoginService){
+quizId:any;
+constructor(private _route:ActivatedRoute,private _resultService:ResultService,private _loginService:LoginService){
     
 }
   ngOnInit(){
+    this.quizId=this._route.snapshot.params.quizId;
     let user=this._loginService.getUser();
     console.log(user);
+    if(user.authorities[0].authority=='Admin'){
     this._resultService.getAllResult().subscribe((data:any)=>{
       this.results=data;
     },(err:any)=>{
 
     })
+  }
+  else{
+    this._resultService.getResultByUser(user.id).subscribe((data:any)=>{
+      this.results=data;
+    },(err:any)=>{
+
+    })
+  }
   }
 }
