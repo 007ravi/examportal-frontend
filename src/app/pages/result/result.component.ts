@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ResultComponent implements OnInit {
 results:any;
 quizId:any;
+  isData: any=0;
 constructor(private _route:ActivatedRoute,private _resultService:ResultService,private _loginService:LoginService){
     
 }
@@ -24,16 +25,20 @@ constructor(private _route:ActivatedRoute,private _resultService:ResultService,p
     if(user.authorities[0].authority=='Admin'){
     this._resultService.getAllResult().subscribe((data:any)=>{
       this.results=data;
+      this.isData=Object.keys(this.results).length;
     },(err:any)=>{
 
     })
   }
   else{
-    this._resultService.getResultByUser(user.id).subscribe((data:any)=>{
+    this._resultService.getResultByUser(user.username).subscribe((data:any)=>{
       this.results=data;
+      console.log(this.results);
+      this.isData=Object.keys(this.results).length;
     },(err:any)=>{
 
     })
   }
+  
   }
 }
