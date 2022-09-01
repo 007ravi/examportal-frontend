@@ -22,6 +22,7 @@ import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { QuizInstructionsComponent } from './pages/user/quiz-instructions/quiz-instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
 import { UpdateQuestionsComponent } from './pages/admin/update-questions/update-questions.component';
+import { ResultComponent } from './pages/result/result.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
       {
         path:'update-question/:quesId',
         component:UpdateQuestionsComponent,
+      },
+      {
+        path:'result',
+        component:ResultComponent,
       }
     ]
   },
@@ -98,6 +103,11 @@ const routes: Routes = [
         component:ProfileComponent,
       },
       {
+        path:'result',    
+        component:ResultComponent,
+      }
+      ,
+      {
       path:':catId',
       component:LoadQuizComponent
       },
@@ -105,7 +115,6 @@ const routes: Routes = [
       path:'instructions/:qid',
       component:QuizInstructionsComponent
       }
-     
     ]
   },
   {
