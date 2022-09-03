@@ -43,6 +43,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from "ngx-ui-loader";
 import { UpdateQuestionsComponent } from './pages/admin/update-questions/update-questions.component';
+import { ResultComponent } from './pages/result/result.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,8 @@ import { UpdateQuestionsComponent } from './pages/admin/update-questions/update-
     LoadQuizComponent,
     QuizInstructionsComponent,
     StartComponent,
-    UpdateQuestionsComponent
+    UpdateQuestionsComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +92,7 @@ import { UpdateQuestionsComponent } from './pages/admin/update-questions/update-
     MatProgressSpinnerModule,
     MatProgressBarModule,
     NgxUiLoaderModule,
+    MatTableModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     })
